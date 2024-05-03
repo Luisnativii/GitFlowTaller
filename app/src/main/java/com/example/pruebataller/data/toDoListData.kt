@@ -14,3 +14,6 @@ class Task(
 
 
 val toDoList: MutableState<MutableList<Task>> = mutableStateOf(mutableListOf())
+
+
+//cambios en dumy data gallo pico
