@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.pruebataller.components.goodByeWorld
+import com.example.pruebataller.components.helloWorld
 import com.example.pruebataller.ui.theme.PruebaTallerTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,6 +37,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
+
+    helloWorld()
+    goodByeWorld()
 }
 
 @Preview(showBackground = true)
