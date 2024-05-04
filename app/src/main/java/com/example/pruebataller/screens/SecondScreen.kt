@@ -14,20 +14,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.pruebataller.ui.theme.PruebaTallerTheme
+import com.todolist.data.Task
 import java.lang.reflect.Modifier
 
 @Composable
-fun SecondScreen() {
+fun SecondScreen(onAddTask: (Task) -> Unit,
+                 onCancel: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = androidx.compose.ui.Modifier
-            .padding(10.dp)
+
             .fillMaxSize()
             .background(Color(0xFF6D81D2))
     ){
@@ -39,18 +44,30 @@ fun SecondScreen() {
 
 @Composable
 fun SecondBodyContent() {
+
+
+    val _toDoList = remember { mutableStateOf(listOf<Task>()) }
+    val showAddTask = remember { mutableStateOf(false) }
+
     Column(
 
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = androidx.compose.ui.Modifier
             
-            .padding(10.dp)
+
             .background(Color.Green)
     ) {
-
+        if (showAddTask.value) {
+            FirstScreen( onAddTask = {
+                _toDoList.value = _toDoList.value + it
+                showAddTask.value = false
+            }, onCancel = {
+                showAddTask.value = false
+            })
+        }
         Text(text = "Navegaste a la segunda pantalla")
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = { showAddTask.value = true }) {
             Text(text = "Regresar")
         }
 
@@ -61,6 +78,6 @@ fun SecondBodyContent() {
 @Preview
 fun GreetingSecondPreview() {
     PruebaTallerTheme {
-        SecondScreen()
+        SecondScreen({},{})
     }
 }

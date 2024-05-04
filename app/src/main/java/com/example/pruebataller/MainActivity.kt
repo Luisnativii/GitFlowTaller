@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    FirstScreen()
+
+                    FirstScreen({},{})
                 }
             }
         }
@@ -36,6 +37,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     PruebaTallerTheme {
-        FirstScreen()
+        FirstScreen({},{})
     }
 }
